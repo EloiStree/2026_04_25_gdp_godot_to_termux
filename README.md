@@ -6,7 +6,7 @@ Try to establish communication between Godot and Termux to use Git on the Quest 
 See: [https://chatgpt.com/share/69eab722-94d8-83eb-928e-9daa4f1c4bc4](https://chatgpt.com/share/69eab722-94d8-83eb-928e-9daa4f1c4bc4)
 
 Install from termux python and flask
-````
+```
 pkg update -y
 pkg install python -y
 pip install flask -y
