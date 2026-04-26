@@ -26,21 +26,21 @@ app = Flask(__name__)
 
 @app.route("/run", methods=["POST"])
 def run():
-    cmd = request.json.get("cmd")
+	cmd = request.json.get("cmd")
 
-    if not cmd:
-        return {"error": "no command provided"}, 400
+	if not cmd:
+		return {"error": "no command provided"}, 400
 
-    try:
-        result = subprocess.check_output(
-            cmd,
-            shell=True,
-            stderr=subprocess.STDOUT,
-            text=True
-        )
-        return {"output": result}
-    except subprocess.CalledProcessError as e:
-        return {"output": e.output, "error": True}, 500
+	try:
+		result = subprocess.check_output(
+			cmd,
+			shell=True,
+			stderr=subprocess.STDOUT,
+			text=True
+		)
+		return {"output": result}
+	except subprocess.CalledProcessError as e:
+		return {"output": e.output, "error": True}, 500
 
 
 app.run(host="127.0.0.1", port=5050)
@@ -61,33 +61,22 @@ extends Node
 var http := HTTPRequest.new()
 
 func _ready():
-    add_child(http)
+	add_child(http)
 
-    var url = "http://127.0.0.1:5050/run"
+	var url = "http://127.0.0.1:5050/run"
 
-    var body = {
-        "cmd": "git"
-    }
+	var body = {
+		"cmd": "git"
+	}
 
-    var json = JSON.stringify(body)
-    var headers = ["Content-Type: application/json"]
+	var json = JSON.stringify(body)
+	var headers = ["Content-Type: application/json"]
 
-    http.request(url, headers, HTTPClient.METHOD_POST, json)
-    http.request_completed.connect(_on_done)
+	http.request(url, headers, HTTPClient.METHOD_POST, json)
+	http.request_completed.connect(_on_done)
 
 func _on_done(result, response_code, headers, body):
-    print("Response:", body.get_string_from_utf8())
+	print("Response:", body.get_string_from_utf8())
 
 
 ```
-
-
-
-
-
-
-
-
-
-
-

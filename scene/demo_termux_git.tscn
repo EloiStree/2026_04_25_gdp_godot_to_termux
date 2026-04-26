@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cclhhkgfbt0mc"]
+
+[ext_resource type="Script" uid="uid://cljjlj5nx0n3d" path="res://addons/2026_04_25_gdp_godot_to_termux/script/termux_bridge.gd" id="1_gfolc"]
+[ext_resource type="Script" uid="uid://uivdj6hv2dou" path="res://addons/2026_04_25_gdp_godot_to_termux/script/test_git_version.gd" id="2_bd7bc"]
+[ext_resource type="Script" uid="uid://bss70ikgoeo1k" path="res://addons/2026_04_26_gdp_basic_godot_xr/script/core/xr_basic_setup_open_xr.gd" id="3_vrcjq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vrcjq"]
+
+[node name="DemoTermuxGit" type="Node3D" unique_id=1745643701]
+
+[node name="TermuxBridge" type="Node" parent="." unique_id=1724487153]
+script = ExtResource("1_gfolc")
+metadata/_custom_type_script = "uid://cljjlj5nx0n3d"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2142595332]
+transform = Transform3D(1, 0, 0, 0, 0.9060273, 0.42321926, 0, -0.42321926, 0.9060273, 0, 1.0142943, 0)
+
+[node name="Label3D" type="Label3D" parent="." unique_id=690441286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3148706, 1.4822125, -1.1791378)
+text = "test"
+
+[node name="Label3D2" type="Label3D" parent="." unique_id=53590640]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0431862, 1.4822125, -1.1791378)
+text = "test"
+
+[node name="Node" type="Node" parent="." unique_id=511318795 node_paths=PackedStringArray("bridge")]
+script = ExtResource("2_bd7bc")
+bridge = NodePath("../TermuxBridge")
+
+[node name="XrBasicSetupOpenXR" type="Node" parent="." unique_id=1278425515]
+script = ExtResource("3_vrcjq")
+metadata/_custom_type_script = "uid://bss70ikgoeo1k"
+
+[node name="XROrigin3D" type="XROrigin3D" parent="." unique_id=1626090354]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D" unique_id=675134229]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=763362474]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.8395178)
+mesh = SubResource("BoxMesh_vrcjq")
+
+[connection signal="on_command_output_as_string" from="TermuxBridge" to="Label3D" method="set_text"]
+[connection signal="on_command_sent_as_string" from="TermuxBridge" to="Label3D2" method="set_text"]
