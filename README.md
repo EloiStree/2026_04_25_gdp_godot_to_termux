@@ -1,4 +1,8 @@
 
+```
+git submodule add https://github.com/EloiStree/2026_04_25_gdp_godot_to_termux.git addons/2026_04_25_gdp_godot_to_termux
+```
+
 # 2026_04_25_godot_gdp_to_termux
 
 Try to establish communication between Godot and Termux to use Git on the Quest 3 / phone.
