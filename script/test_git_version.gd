@@ -72,7 +72,7 @@ func _sync_repo(path: String) -> void:
 	await get_tree().create_timer(0.5).timeout
 
 	# 4. pull (rebase recommended)
-	bridge.run_command("cd \"%s\" && git pull --rebase" % path, cb)
+	bridge.run_command("cd \"%s\" && git pull" % path, cb)
 	await get_tree().create_timer(1.0).timeout
 
 	# 5. push
